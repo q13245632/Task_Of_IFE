@@ -1,0 +1,50 @@
+.main_frame{
+    font-family: "微软雅黑";
+    margin: 20px;
+    padding: 20px;
+	background-color: #eee;
+	border-style: 1px solid #999;
+	min-height: 500px;
+	overflow: auto;
+	position: relative;
+}
+.team{
+	width: 200px;
+	height: 120px;
+	float: left;
+	background-color: white;
+	border-style: 1px solid #999;
+}
+.team_logo{
+	float: left;
+	padding: 20px;
+    display: inline-block;
+    clear: left;
+}
+.team_name{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.team_inf{
+	margin-left:220px; 
+	margin-right: 140px;
+	border: 1px solid #999; 
+	padding-left:20px;
+	padding-right: 20px;
+	background-color: white;
+}
+.person{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 120px;
+	border: 1px solid #999;
+	background-color: white;
+    float: right;
+    overflow: auto;
+}
+.img1{
+    margin:20px;
+	display: block;
+}
