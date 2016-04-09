@@ -1,53 +1,44 @@
-var arr=new Array();
-function checkValue(numvalue){
-	if(isNaN(numvalue))
+var data=[];
+$ = function (el) { return document.querySelector(el); };
+function render() {
+    $('#output').innerHTML =
+    data.map(function(d) { return "<div>" + d + "</div>"; })
+    .join('');
+    }
+function checkValue(){
+  var num = $('#num').value;
+	if(isNaN(num))
 　　{
 　　alert("请输入数字！");
 　　return false;
 　　} else{
-	return true;
+	return parseInt(num);
 }
 }
-function output(array){
-	var output=document.getElementById("output");
-	output.innerHTML=arr.map(function(d) { return "<div>" + d + "</div>"; })
-          .join('');;
-}
-function leftadd(){
-	var num_in=document.getElementById("num");
-    var num_value=num_in.value;
-	if(checkValue(num_value)){
-        arr.unshift("<div>"+num_value+"</div>");
-    output(arr);
-}
-}
-function leftdel(){
-    var num_in=document.getElementById("num");
-    var num_value=num_in.value;
-    var len=arr.length;
-    if (len>0) {
-    alert((arr.shift()).textContent);
-	output(arr);
-    } else {
-    alert("数组为空，无法删除！");
+    function deal(func, succ) {
+      var args = [].slice.call(arguments, 2);
+      return function(e) {
+        try {
+          var arg = args.map(function(item) {
+            return typeof item === "function" ? item(e) : item;
+          });
+          var result = func.apply(data, arg);
+
+          if (succ != null) {
+            succ(result);
+          }
+        } catch (ex) {
+          alert(ex.message);
+        }
+        render();
+      };
     }
-}
-function rightadd(){
-	var num_in=document.getElementById("num");
-    var num_value=num_in.value;
-    if(checkValue(num_value)){
-    arr.push("<div>"+num_value+"</div>");
-	output(arr);
-}
-}
-function rightdel(){
-    var num_in=document.getElementById("num");
-    var num_value=num_in.value;
-    var len=arr.length;
-    if (len>0) {
-    alert((arr.pop()).textContent);
-    output(arr);
-    } else {
-    alert("数组为空，无法删除！");
+    function getDel(e) {
+      var node = e.target;
+      return [].indexOf.call(node.parentNode.children, node);
     }
-}
+    $('#leftadd').onclick = deal([].unshift, null, checkValue);
+    $('#rightadd').onclick = deal([].push, null, checkValue);
+    $('#leftdel').onclick = deal([].shift, window.alert);
+    $('#rightdel').onclick = deal([].pop, window.alert);
+    $('#output').onclick = deal([].splice, null, getDel, 1);
