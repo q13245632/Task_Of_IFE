@@ -1,29 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Task 18 Of IFE</title>
-	<style type="text/css">
-	#output{
-		margin-top: 40px;
-		margin-left: 10px;
-		width: 800px;
-		height: 400px;
-		line-height: 600px;
-		text-align: center;
-	}
-	</style>
-</head>
-<body>
-	<div>
-	<input type="text" name="num" id="num" placeholder="请输入一个10-100的数字。">
-	<input type="button" id="leftadd" name="leftadd" value="左侧入">
-	<input type="button" id="rightadd" name="rightadd" value="右侧入">
-	<input type="button" id="leftdel" name="leftdel" value="左侧出">
-	<input type="button" id="rightdel" name="rightdel" value="右侧出">
-	<input type="button" id="sortdata" name="sortdata" value="排序">
-	</div>
-	<div id="output"></div>
-</body>
-<script type="text/javascript" src='task18.js'></script>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="https://github.com/Scimanyd/baidu-ife-study">
+		<title>
+			任务十九：基础JavaScript练习（二）
+		</title>
+		<style type="text/css">
+			input{
+				outline: none;
+				padding: 0 1em; 
+				height: 25px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">    
+				<input type="text" id="input_num" placeholder="请输入10-100的数">
+				<input type="button" id="addleft" value="左侧入"> 
+				<input type="button" id="addright" value="右侧入"> 
+				&nbsp;
+				<input type="button" id="delleft" value="左侧出"> 
+				<input type="button" id="delright" value="右侧出">
+				&nbsp;
+				<input type="button" id="sortdata" value="排序">
+			<div id="api-chart">
+			</div>
+		</div>
+		<script type="text/javascript" src="task19.js"></script>
+	</body>
 </html>
