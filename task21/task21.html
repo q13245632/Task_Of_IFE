@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务二十一：基础JavaScript练习（四）</title>
+	<style type="text/css">
+	#wrap{
+		font-size: 14px;
+		font-family: "MicroSoft YaHei";
+		}
+	#textareaInput{
+		margin-top: 200px;
+	}
+	#textareaInput textarea{
+		width: 300px;
+		height: 100px;
+	}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="tagInput">
+			<label name="tag">Tag:</label>
+			<input id="tag_input" name="tag_input" onkeyup="addTag(event)"></div>
+		<div id="tagShow"></div>
+		<div id="textareaInput" name="textareaInput">
+			<div>
+				<textarea id="textarea_input"></textarea>
+			</div>
+			<input type="button" id="confirm" value="确认兴趣爱好"></div>
+		<div id="textareaShow"></div>
+	</div>
+</body>
+	<script type="text/javascript">
+	var data=[10];//保存Tag内容
+	var textarr=[10];//保存textarea内容
+	var taginput=document.getElementById("tag_input");
+    var txetareainput=document.getElementById("textarea_input");
+    //数组去重
+    Array.prototype.unique3 = function(){
+    var res = [];
+    var json = {};
+    for(var i = 0; i < this.length; i++){
+    	if(!json[this[i]]){
+    		res.push(this[i]);
+            json[this[i]] = 1;
+        }
+    }
+    return res;
+}
+    //数组分割
+	function getSplitString(str) {  
+    var arr = str.split("，");  
+    var resources =[];
+    for (var i = 0; i < arr.length; i++) {  
+        var arr1 = arr[i].split(/\s+/); 
+        for (var j = 0; j < arr1.length; j++) { 
+              var arr2 = arr1[j].split("、");
+              for (var k = 0; k < arr2.length; k++) {
+              	var arr3=arr2[k].split(",");
+              	for (var m = 0; m < arr3.length; m++) {
+              	if (arr3[m].trim() != ""){
+              		resources=resources.concat(arr3[m]);  
+              	}
+              	}
+              }                   
+            } 
+        }  
+    return resources;  
+}  
+    //添加Tag内容
+	function addTag(event){
+		tagValue=taginput.value;
+		event=event||window.event;
+		if ((tagValue.indexOf(",")>=0)||(tagValue.indexOf(" ")>=0)||(tagValue.indexOf("\n")>=0)||event.keyCode == 13) {
+			data=getSplitString(tagValue);
+			data=data.unique3();
+			renderChart("tagShow",data);
+		}
+	}
+	//添加Textarea内容
+	function addTextarea(){
+		textValue=txetareainput.value;
+		textarr=getSplitString(textValue);
+		textarr=textarr.unique3();
+		renderChart("textareaShow",textarr);
+	}
+	//点击删除Tag
+	function delClick(index){
+	data.splice(index,1);
+	renderChart("tagShow",data);
+}
+   //显示点击删除文字，暂时未实现
+    function showdel(){
+    	var tagshow =document.getElementById("tagShow");
+        addEventHandler(tagshow,'mouseover',function(e){
+       	if (e.target&&e.target.node=="SPAN") {
+       		e.target.firstChild.insertData(0,'点击删除');
+       	}
+       })
+    }
+    //渲染图表
+	function renderChart(str,arrdata){
+	var api_chart = document.getElementById(str);
+	  //设定宽度
+	api_chart.style.height = "20px";
+	api_chart.style.lineHeight = "20px";
+	api_chart.innerHTML = "";
+	var bgColor = "red";
+	for(var i = 0 ; i < arrdata.length ; i++){
+		api_chart.innerHTML += "<span onclick=delClick("+i+") onmouseover=showdel() style='display:inline-block;margin-left:1px;width:50px;height:20px;background-color:"+bgColor+";cursor:pointer;'>"+arrdata[i]+"</span>";
+	}
+}
+//初始化
+    function init(){
+	document.getElementById("tag_input").oninput = function() {addTag()};
+	document.getElementById("confirm").onclick= function(){addTextarea()};
+}
+init();
+</script>
+</html>
