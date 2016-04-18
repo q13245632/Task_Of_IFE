@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务二十九：表单（一）单个表单项的检验</title>
+	<script type="text/javascript">
+function count(value){
+ // 定义字符总数变量，避免值为空时无返回值
+ var countNum = 0;
+ // 遍历文本框内文本的每一个字符    
+ for(var i = 0;i < value.length;i++){
+  // 使用charCodeAt方法可以得到第i个字符的ascii码值
+  var countCode = value.charCodeAt(i);
+  // ascii码在0~128范围内包括英文字符和数字
+  // 此时长度+1，否则按汉字和中文符号处理长度+2
+  if(countCode >= 0 && countCode <= 128){
+   countNum += 1;
+  }
+  else{
+   countNum += 2;
+  }
+ }
+ return countNum;
+}
+function init(){
+$ = function (el) { return document.querySelector(el); };
+var longstr=$('#longStr');
+var long_Str=$('#long_str');
+var text_name=$('#name');
+var textName=$('#textname');
+var longStrVal=longstr.value;
+var longStrValNum=count(longStrVal);
+//验证输入字符的长度
+if (longStrValNum>=4&&longStrValNum<=16) {
+   long_Str.innerHTML="输入正确！";
+} else{
+long_Str.innerHTML="输入错误，请重新输入！";
+}
+if (text_name.value.length>0) {
+textName.innerHTML="输入正确！";
+} else {
+	textName.innerHTML="姓名不能为空！";
+}
+if ($('#userName').value.length>0) {
+	$('#user_name').innerHTML="名称格式正确";
+	return true;
+} else {
+	$('#user_name').innerHTML="名称格式错误";
+	return false;
+}
+}
+	</script>
+</head>
+<body>
+	<form action="#" onsubmit="return init();" method="post">
+		<div>
+			名称&nbsp;&nbsp;&nbsp;
+			<input type="text" id="longStr">
+			<br />
+			<p id="long_str">必填，长度为4~16个字符</p>
+			<br />
+		</div>
+		<div>
+			名称&nbsp;&nbsp;&nbsp;
+			<input type="text" id="name">
+			<br />
+			<p id="textname"></p>
+			<br />
+		</div>
+		<div>
+			名称&nbsp;&nbsp;&nbsp;
+			<input type="text" id="userName">
+			<br />
+			<p id="user_name"></p>
+		</div>
+		<input type="submit" value="submit"></form>
+
+</body>
+</html>
