@@ -1,6 +1,7 @@
 $ = function (el) { return document.querySelector(el); };
-var isCheckName,isCheckPass,isCheckPassCon,isCheckMail,isCheckPhone;
-function catchEvent(eventObj,event,eventHandler){
+var isCheckName,isCheckPass,isCheckPassCon,isCheckMail,isCheckPhone;//保存各个检查结果
+//浏览器兼容性
+function catchEvent(eventObj,event,eventHandler){ 
 	if (eventObj.addEventListener) {
 		eventObj.addEventListener(event,eventHandler,false);
 	} else if (eventObj.attachEvent) {
@@ -8,12 +9,13 @@ function catchEvent(eventObj,event,eventHandler){
 		eventObj.attachEvent(event,eventHandler);
 	}
 }
+//检查名字
 function checkName(){
 	if ($('#textname').value.length==0) {
 		$('#name span').innerHTML="姓名不能为空";
 		$('#name span').style.color='red';
 		$('#textname').style.borderColor='red';
-		isCheckName=false;
+		isCheckName=false;//保存检查结果
 	} else if ($('#textname').value.length>=4&&$('#textname').value.length<=16) {
 		$('#name span').innerHTML="格式正确";
 		$('#name span').style.color='black';
@@ -26,6 +28,7 @@ function checkName(){
 		isCheckName=false;
 	}
 }
+//检查密码
 function checkPass(){
 	if ($('#textpass').value.length==0) {
 		$('#pass span').innerHTML="密码不能为空";
@@ -44,6 +47,7 @@ function checkPass(){
 		isCheckPass=false;	
 	}
 }
+//检查第二次输入的密码
 function checkPassCon(){
 	if ($('#textpassconfirm').value.length==0) {
 		$('#passconfirm span').innerHTML="密码不能为空";
@@ -65,6 +69,7 @@ function checkPassCon(){
 		isCheckPassCon=false;	
 	}
 }
+//检查邮箱
 function checkMail(){
 	if ($('#textmail').value.length==0) {
 		$('#mail span').innerHTML="邮箱不能为空";
@@ -83,6 +88,7 @@ function checkMail(){
 		isCheckMail=false;
 	}
 }
+//检查手机号码
 function checkPhone(){
 	if ($('#textphone').value.length==0) {
 		$('#phone span').innerHTML="手机号不能为空";
