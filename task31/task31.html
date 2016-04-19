@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务三十一：表单（三）联动</title>
+	<style type="text/css">
+	.hide{
+		display:none;
+	}
+	</style>
+</head>
+<body>
+	<div id="sel" onchange="showDivs()">
+		<input type="radio" id="radio1" name="school" checked="checked" value="inSchool" onblur="showDivs()">在校生
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="radio" id="radio2" name="school" value="outSchool">非在校生
+	</div>
+	<div id="show">
+	    <div class="inSchoolSec">
+	    学校&nbsp;&nbsp;&nbsp;<select id="city" onchange="showOptions()">
+	    	<option value="BJ" selected="selected">北京</option>
+	    	<option value="NJ">南京</option>
+	    	<option value="SH">上海</option>
+	    	<option value="XA">西安</option>
+	    </select>
+	    <select id="schoolname">
+	    <option value='Peking'>北京大学</option>
+	    <option value='Tsing'>清华大学</option>
+	    </select>
+	    </div>
+		<div class="outSchoolSec">
+			就业单位&nbsp;&nbsp;&nbsp;
+			<input type="text">
+		</div>
+	</div>
+	<script type="text/javascript" src="task31.js"></script>
+</body>
+</html>
