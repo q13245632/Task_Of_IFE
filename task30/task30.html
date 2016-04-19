@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务三十：表单（二）多个表单项的检验</title>
+	<style type="text/css">
+	*{
+		font-size: 14px;
+		font-family: '微软雅黑';
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		width: 100%;
+	}
+	div{
+		height: 80px;
+        margin: 0 20%;
+	}
+	#name{
+		margin-top: 50px;
+	}
+	div label{
+		text-align: right;
+		display: inline-block;
+		width: 200px;
+		}
+	div input{
+		width: 300px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #a8a8a8;
+        padding-left: 10px;
+		}
+	div span{
+		width: 200px;
+		margin-left: 20px;
+		}
+</style>
+</head>
+<body>
+	<div id="name">
+		<label>名称：</label>
+        <input type="text" id="textname" onblur="checkName()">
+        <span>必填，长度为4~16个字符</span>
+	</div>
+	<div id="pass">
+		<label>密码：</label>
+		<input type="password" id="textpass" onblur="checkPass()">
+		<span></span>
+	</div>
+	<div id="passconfirm">
+		<label>密码确认：</label>
+		<input type="password" id="textpassconfirm" onblur="checkPassCon()">
+		<span></span>
+	</div>
+	<div id="mail">
+		<label>邮箱：</label>
+		<input type="mail" id="textmail" onblur="checkMail()">
+		<span></span>
+	</div>	
+	<div id="phone">
+		<label>手机：</label>
+		<input type="text" id="textphone" onblur="checkPhone()">
+		<span></span>
+	</div>
+	<div id="btn">
+	    <label></label>
+		<input type="button" value="提交" id="subbtn" onclick="btnClick()">
+	</div>
+	<script type="text/javascript" src="task30.js"></script>
+</body>
+</html>
